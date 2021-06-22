@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+  let obj = {
+    x: 12
+  }
+  Object.defineProperty(obj, 'x', {
+    value: 100
+  })
+  console.log(obj.x);
+
+  let object = {}
+  Object.defineProperty(object, 'x', {
+    value: 100,
+    writable: false
+  })
+  object.x = 200;
+  console.log(object.x);
+
+  let testObj = Object.defineProperty({}, 'x', {
+    value: 5,
+    enumerable: false // 默认是true
+  })
+  testObj.a = 2;
+  testObj.b = 3;
+  for (var i in testObj) {
+    console.log('不允许枚举==>', i);
+  }
+  console.log(Object.keys(testObj));
+
+
+  var object2 = Object.defineProperty({}, 'x', {
+    writable: false,
+    configurable: true // true
+  })
+
+  object2.x = 5;
+  console.log(object2.x); // undefined
+  Object.defineProperty(object2, 'x', {
+    value: 2
+  })
+  console.log(object2.x); // 2
+
+
+  // 访问器属性
+  var data = {
+    name: 'dsm',
+    age: 18,
+    feature: 'good'
+  }
+  Object.defineProperty(data, 'name', {
+    // get: function () {
+    //   console.log('getter函数');
+    //   return '123'
+    // },
+    set: function (val) {
+      console.log('setter函数');
+      console.log('val =>', val);
+      console.log('this =>', this);
+    }
+  })
+
+  console.log(data.name); // 123
+  data.name = 'ccy';
+
+  var book = {
+    _year: 2004,
+    edition: 1
+  }
+
+  Object.defineProperty(book, 'year', {
+    get: function () {
+      return this._year;
+    },
+    set: function (newValue) {
+      if (newValue > 2004) {
+        this._year = newValue;
+        this.edition += newValue - 2004
+      }
+    }
+  })
+
+  book.year = 2005;
+  alert(book.edition)
+  console.log(book);
+</script>
+
+</html>

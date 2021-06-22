@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- <div>
+    <ul>
+      <li>
+        <p id="aaa">AAA</p>
+      </li>
+      <li>
+        <p id="bbb">BBB</p>
+      </li>
+    </ul>
+  </div> -->
+  <div>
+    <div style="height: 300px;border: 1px solid #ccc;">div1</div>
+    <div>div2</div>
+  </div>
+  <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
+  </script>
+  <script>
+    var ul = document.querySelector('ul');
+    var li = document.querySelector('li');
+    var p = document.querySelector('p');
+    // 方式一: 原生JS的事件委托
+    // ul.onclick = function (event) {
+    //   console.log(this);  // <ul>...</ul>
+    //   console.log(event.currentTarget);   // <ul>...</ul>
+    //   console.log(event.target);  // <p>...</p>
+    // }
+    // ul.onclick = function (e) {
+    //   // 兼容性处理
+    //   var e = e || window.event;
+    //   var target = e.target || e.srcElement;
+    //   switch (target.id) {
+    //     case 'aaa':
+    //       alert('AAA')
+    //       break;
+    //     case 'bbb':
+    //       alert('BBB')
+    //       break;
+    //     default:
+    //       alert('未点击p标签')
+    //       break;
+    //   }
+    // }
+    // 方式二: 使用jquery 的on方法,已经封装好的事件委托
+    $('ul').on('click', 'li', function () {
+      alert('被点击的li')
+      console.log(this);
+    })
+  </script>
+</body>
+
+</html>

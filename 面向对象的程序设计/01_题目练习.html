@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+  var str = ' 6 6 ';
+  var str1 = str.replace(/\s*/g, '')
+  console.log(str1);
+  var str2 = ' 6 6 ';
+  var str2_1 = str2.trim();
+  console.log(str2_1);
+
+  var arr = [1, 2]
+  arr.name = 'test'
+  console.log(arr);
+
+  var obj = {
+    count: 1
+  }
+
+  var myArray = ['red', 'white', 'black'];
+  console.log(myArray.length);
+  console.log(myArray);
+
+  myArray.obj = obj;
+  myArray.push(obj);
+  console.log(myArray.length);
+  console.log(myArray);
+
+  var object = { a: 1, b: 2, c: 3 }
+  for (var prop in object) {
+    console.log(`obj.${prop}=${object[prop]}`);
+  }
+  console.log(object.hasOwnProperty('a')); // true
+  console.log(object.hasOwnProperty('d')); // false
+
+  var triangle = { a: 1, b: 2, c: 3 };
+  function ColoredTriangle() {
+    this.color = 'red';
+  }
+  ColoredTriangle.prototype = triangle;
+  var obj = new ColoredTriangle();
+  console.log(obj);
+  console.log(obj.hasOwnProperty('color')); // true
+  console.log(obj.hasOwnProperty('a')); // false 继承的属性不显示
+  // for...in 遍历对象,包括原型上的属性,hasOwnProperty(),不包含原型上的属性
+  for (var prop in obj) {
+    console.log(prop); // color, a, b, c
+    if (obj.hasOwnProperty(prop)) {
+      console.log(`obj.${prop} = ${obj[prop]}`);
+    }
+  }
+
+  for (let i of Object.keys(triangle)) {
+    console.log(i);
+  }
+
+  var testArr = [1, 2, 3, 4];
+  for (let item of testArr) {
+    if (item === 3) {
+      break
+    }
+    console.log(item);
+  }
+
+  // 将'false', 'true',转为boolean值的方法,使用JSON.parse()进行转化
+  let flag = 'false';
+  let target = 'true';
+  console.log(flag, JSON.parse(flag));
+  console.log(target, JSON.parse(target));
+
+  let test1 = null;
+  console.log(test1);
+  console.log(typeof (test1));
+  // console.log('我是null', Object.keys(test1).length);
+  // test1.name = 'dsm';
+  test1 = {
+    name: 'dsm'
+  }
+  test1.age = 18;
+  console.log(test1);
+  let test2 = {};
+  if (test1) {
+    console.log('我是null');
+  }
+  if (test2 && Object.keys(test2).length) {
+    console.log('我是test2', Object.keys(test2).length);
+  }
+
+  var containsNearbyDuplicate = function (nums, k) {
+    var map = {};
+    for (var i = 0; i < nums.length; i++) {
+      if (!map.hasOwnProperty(nums[i])) {
+        map[nums[i]] = i;
+        continue;
+      }
+      console.log('map', map);
+      if (i - map[nums[i]] <= k) return true;
+      map[nums[i]] = i;
+    }
+    return false;
+  }
+  console.log(containsNearbyDuplicate([1, 2, 3, 5], 3))
+
+
+</script>
+
+</html>
