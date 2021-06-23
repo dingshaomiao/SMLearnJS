@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+  console.log('JS内置对象Object', Object, Object.prototype);
+
+  const person = {
+    isHuman: false,
+    printIntroduction: function () {
+      console.log(`My name is ${this.name}. Am I human? ${this.isHuman}`);
+    }
+  };
+
+  const me = Object.create(person);
+
+  me.name = 'Matthew'; // "name" is a property set on "me", but not on "person"
+  me.isHuman = true; // inherited properties can be overwritten
+
+  me.printIntroduction();
+  // expected output: "My name is Matthew. Am I human? true"
+  console.log(me);
+
+  var a = Object.create({ a: 1, b: 2 }) // 属性挂载到__proto__原型上
+  console.log(a)
+  // 输出是：{}__proto__: a: 1b: 2__proto__: Object
+  var obj = {};
+  var b = Object.defineProperties(obj, { a: { value: 1 }, b: { value: 2 } }) // 跟new Object()一样效果，定义其可枚举属性或者修改的属性
+  console.log(b)
+  // 输出是：{a: 1, b: 2}
+  var c = new Object({ a: 1, b: 2 }) // 跟defineProperties一样的效果，定义其可枚举属性
+  console.log(c)
+  // 输出是： {a: 1, b: 2}
+  let data = null;
+  console.log(data?.accountNum?.name);
+  let firstName = 0
+  const personFirstName = person1?.details?.name?.firstName ?? 'stranger';
+  console.log('personFirstName: ', personFirstName);
+</script>
+
+</html>
